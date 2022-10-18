@@ -19,10 +19,12 @@ namespace GHVideoApp.Controls
     /// </summary>
     public partial class WindowAddProperty : Window
     {
-        IEnumerable<string> properties;
+        public List<string> Properties { get; set; }
+
+        char currentFirstChar;
         public WindowAddProperty(IEnumerable<string> existsPeopertyList)
         {
-            this.properties = existsPeopertyList;
+            this.Properties = existsPeopertyList.ToList();
 
             InitializeComponent();
         }
@@ -38,13 +40,18 @@ namespace GHVideoApp.Controls
 
         private void propertyValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var text = propertyValue.Text;
-            this.existsPropertyList.Items.Clear();
+            var first = propertyValue.Text.First();
+            
+            if(first == this.currentFirstChar)
+                return;
 
-            foreach (var item in properties)
+            existsPropertyList.SelectedItems.Clear();
+
+            var itemsCount = this.Properties.Count();
+            for (int i = 0; i < itemsCount; i++)
             {
-                if (item.Contains(text))
-                    this.existsPropertyList.Items.Add(item);
+                if(this.Properties[i].StartsWith(first) == true)
+                    existsPropertyList.SelectedItems.Add(this.Properties[i]);
             }
         }
 

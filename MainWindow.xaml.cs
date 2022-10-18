@@ -54,7 +54,6 @@ namespace GHVideoApp
             }
         }
 
-
         public CollectionViewSource? VideoCollectionViewSource { get; private set; }
 
         public MainWindow()
@@ -109,13 +108,13 @@ namespace GHVideoApp
             }
         }
 
+        #region MenuEvents
 
-        private void comboBoxActorSelecter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CmdManageActors_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        #region MenuEvents
         private void CmdFindAllVideo_Click(object sender, RoutedEventArgs e)
         {
             var array = MyApp.VideoSourceList;

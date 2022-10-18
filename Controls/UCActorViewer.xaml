@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="GHVideoApp.Controls.UCActorViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GHVideoApp.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="340" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <Style x:Key="Info" TargetType="Label">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontWeight" Value="Black"/>
+        </Style>
+
+        <!--<Style TargetType="bp:MultiSelectCombobox">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>-->
+
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Background" Value="LightGoldenrodYellow"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="46"></RowDefinition>
+            <RowDefinition Height="46"></RowDefinition>
+            <RowDefinition Height="160"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="propertyTitle"
+               Grid.Row="0"
+               Grid.ColumnSpan="6"
+               Content="Actor"
+               HorizontalAlignment="Center"
+               FontSize="30"/>
+        <Label Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource Info}"
+               Content="名字:"/>
+        <TextBox x:Name="txtName" 
+                 Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                 
+                 TextChanged="txtName_TextChanged"
+                 Text="{Binding Current.GHName}"  
+                 ></TextBox>
+
+        <Label Grid.Row="1" Grid.Column="3" 
+               Style="{StaticResource Info}"
+               Content="人种:"/>
+        <ComboBox Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"
+                  FontSize="22"
+                  Margin="0,5"
+                  ItemsSource="{Binding Races}"
+                  SelectedItem="{Binding Race, Mode=TwoWay}">
+
+
+        </ComboBox>
+        <Label Grid.Row="2" Grid.Column="0" 
+               Style="{StaticResource Info}"
+               Content="特点:"/>
+        <ListView  x:Name="listTags" Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="5"
+                   FontSize="22"
+                   MouseDoubleClick="listTags_MouseDoubleClick"
+                   Margin="0,2"
+                   ItemsSource="{Binding TagCollection}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+        <!--<bp:MultiSelectCombobox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"
+                                x:Name="selectorTag"
+                                Margin="2"
+                                ItemSource="{Binding Properties.VideoTypeCollection}"
+                                SelectedItems="{Binding TagCollection,Mode=TwoWay}"
+                                >
+        </bp:MultiSelectCombobox>-->
+        <Label Grid.Row="3" Grid.Column="0"
+               Style="{StaticResource Info}"
+               Content="别名:"/>
+        <ListBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+                 Background="LightYellow"
+                 x:Name="listName"
+                 ItemsSource="{Binding NameCollection}">
+
+        </ListBox>
+        <DockPanel Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="2">
+            <Label Content="新名字：" DockPanel.Dock="Top" Style="{StaticResource Info}"/>
+            <TextBox DockPanel.Dock="Top"
+                 x:Name="txtCurrentName"
+                 Background="LightYellow"
+                     Margin="2"
+                 Text=""></TextBox>
+            <Button x:Name="buttonAdd"  DockPanel.Dock="Top" Content="添加"
+                    Command="ApplicationCommands.New"
+                    CommandParameter="{Binding ElementName=txtCurrentName,Path=Text}"></Button>
+            <Button x:Name="buttonDel" DockPanel.Dock="Top" Content="删除"
+                    Command="ApplicationCommands.Delete"
+                    CommandParameter="{Binding ElementName=listName,Path=SelectedItem}"></Button>
+        </DockPanel>
+        <Button x:Name="buttonOK"
+                Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+                Background="LightGreen"
+                Content="确定"
+                Click="buttonOK_Click"/>
+        <Button x:Name="buttonNo"
+                Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2"
+                Background="LightPink"
+                Content="取消"
+                Click="buttonNo_Click"/>
+    </Grid>
+</UserControl>

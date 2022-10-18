@@ -12,17 +12,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GHVideoApp.Controls
 {
     /// <summary>
-    /// WindowAddActor.xaml 的交互逻辑
+    /// UCActorViewer.xaml 的交互逻辑
     /// </summary>
-    public partial class WindowAddActor : Window
+    public partial class UCActorViewer : UserControl
     {
         public bool IsAddNew { get; private set; } = false;
-        public Actor Current { get; set; }
+
+        //public Actor Current { get; set; }
+
+        public Actor Current
+        {
+            get { return (Actor)GetValue(CurrentProperty); }
+            set { SetValue(CurrentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Current.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentProperty =
+            DependencyProperty.Register("Current", typeof(Actor), typeof(UCActorViewer), new PropertyMetadata(new Actor("新演员", "日本")));
 
         public ObservableCollection<string> TagCollection { get; set; } = new();
         public ObservableCollection<string> NameCollection { get; set; } = new();
@@ -31,19 +43,22 @@ namespace GHVideoApp.Controls
         public string Race { get; set; } = "日本";
 
         public AllPropertyDocument Properties { get; private set; }
-        public WindowAddActor()
+
+        public event EventHandler ConformEvent;
+        public event EventHandler CancelEvent;
+
+
+        public UCActorViewer()
         {
             IsAddNew = true;
-            Current = new() { GHName = "" };
             Properties = ((App)Application.Current).AllProperties;
             Races = ((App)Application.Current).Races;
 
             InitializeComponent();
         }
 
-        public WindowAddActor(Actor actor)
+        public UCActorViewer(Actor actor)
         {
-
             IsAddNew = false;
             Current = actor;
 
@@ -143,12 +158,14 @@ namespace GHVideoApp.Controls
 
             this.Current.Race = this.Race;
 
-            this.DialogResult = true;
+            if (this.ConformEvent != null)
+                this.ConformEvent(this, new EventArgs());
         }
 
         private void buttonNo_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            if (this.CancelEvent != null)
+                this.CancelEvent(this, new EventArgs());
         }
         #endregion
     }

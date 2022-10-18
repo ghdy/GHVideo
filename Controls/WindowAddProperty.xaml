@@ -10,6 +10,11 @@
         Width="480"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="ContentControl">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+    </Window.Resources>
     <DockPanel LastChildFill="True">
 
         <Label x:Name="propertyTitle" DockPanel.Dock="Top"
@@ -33,11 +38,32 @@
                 Height="48"
                 Width="120"
                 FontSize="26"/>
-        <ListBox x:Name="existsPropertyList"
-                 DockPanel.Dock="Left"
-                 Background="AliceBlue"
-                 Margin="5"
-                 ItemsSource="{Binding}"></ListBox>
-        
+        <ListView x:Name="existsPropertyList"
+                  DockPanel.Dock="Left"
+                  Background="AliceBlue"
+                  Margin="5"
+                  FontSize="22"
+                  SelectionMode="Multiple"
+                  ItemsSource="{Binding Properties}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"
+                               Width="440"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="Red">
+                                
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
     </DockPanel>
 </Window>

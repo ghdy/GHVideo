@@ -66,7 +66,11 @@
 
         <Menu Grid.Row="0" Grid.Column="0">
 
-            <MenuItem Header="演员"></MenuItem>
+            <MenuItem Header="演员">
+                <MenuItem Header="管理演员"
+                          x:Name="CmdManageActors" 
+                          Click="CmdManageActors_Click"></MenuItem>
+            </MenuItem>
 
             <MenuItem Header="视频">
                 <MenuItem Header="清理视频名"
