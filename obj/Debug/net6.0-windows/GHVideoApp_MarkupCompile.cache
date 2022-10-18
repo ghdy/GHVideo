@@ -1,5 +1,5 @@
 ﻿GHVideoApp
-1.0.0.0
+
 
 winexe
 C#
@@ -12,7 +12,7 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\Projects\GitHub\GHVideoApp\App.xaml
 8-912200540
 
-23161604401
+21-1383072909
 1951446312407
 Controls\UCActorViewer.xaml;Controls\UCVideoViewer.xaml;Controls\WindowAddActor.xaml;Controls\WindowAddProperty.xaml;Controls\WindowAddVideo.xaml;Controls\WindowManageActors.xaml;Controls\WindowStringsSelector.xaml;MainWindow.xaml;
 

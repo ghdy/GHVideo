@@ -1,33 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {
-      "GHVideo.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/GHVideo.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GHVideo.Core.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
-      }
-    }
+    "net6.0-windows7.0": {}
   },
-  "libraries": {
-    "GHVideo.Core/1.0.0": {
-      "type": "project",
-      "path": "../GHVideo.Core/GHVideo.Core.csproj",
-      "msbuildProject": "../GHVideo.Core/GHVideo.Core.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": [
-      "GHVideo.Core >= 1.0.0"
-    ]
+    "net6.0-windows7.0": []
   },
   "packageFolders": {
     "C:\\Users\\ghdy2\\.nuget\\packages\\": {}
@@ -55,11 +33,7 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {
-            "E:\\Projects\\GitHub\\GHVideo.Core\\GHVideo.Core.csproj": {
-              "projectPath": "E:\\Projects\\GitHub\\GHVideo.Core\\GHVideo.Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
