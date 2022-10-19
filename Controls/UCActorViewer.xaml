@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GHVideoApp.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="340" d:DesignWidth="480">
+             d:DesignHeight="320" d:DesignWidth="480">
 
     <UserControl.Resources>
         <Style x:Key="Info" TargetType="Label">
@@ -21,7 +21,7 @@
 
         <Style TargetType="Button">
             <Setter Property="Height" Value="32"/>
-            <Setter Property="Width" Value="120"/>
+            <Setter Property="Width" Value="100"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Margin" Value="2"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -49,8 +49,8 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="46"></RowDefinition>
             <RowDefinition Height="46"></RowDefinition>
-            <RowDefinition Height="160"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="46"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label x:Name="propertyTitle"
@@ -104,25 +104,29 @@
         <Label Grid.Row="3" Grid.Column="0"
                Style="{StaticResource Info}"
                Content="别名:"/>
-        <ListBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+        <ListBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                  Background="LightYellow"
                  x:Name="listName"
                  ItemsSource="{Binding NameCollection}">
 
         </ListBox>
-        <DockPanel Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="2">
-            <Label Content="新名字：" DockPanel.Dock="Top" Style="{StaticResource Info}"/>
-            <TextBox DockPanel.Dock="Top"
+        <DockPanel Grid.Row="3" Grid.Column="3"  Grid.ColumnSpan="3">
+            <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                <Label Content="新名:" DockPanel.Dock="Left" Style="{StaticResource Info}"/>
+                <TextBox DockPanel.Dock="Top"
                  x:Name="txtCurrentName"
                  Background="LightYellow"
                      Margin="2"
                  Text=""></TextBox>
-            <Button x:Name="buttonAdd"  DockPanel.Dock="Top" Content="添加"
+            </DockPanel>
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="buttonAdd" Content="添加"
                     Command="ApplicationCommands.New"
                     CommandParameter="{Binding ElementName=txtCurrentName,Path=Text}"></Button>
-            <Button x:Name="buttonDel" DockPanel.Dock="Top" Content="删除"
+                <Button x:Name="buttonDel" Content="删除"
                     Command="ApplicationCommands.Delete"
                     CommandParameter="{Binding ElementName=listName,Path=SelectedItem}"></Button>
+            </WrapPanel>
         </DockPanel>
         <Button x:Name="buttonOK"
                 Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"

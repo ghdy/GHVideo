@@ -112,7 +112,8 @@ namespace GHVideoApp
 
         private void CmdManageActors_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowManageActors wma = new WindowManageActors();
+            wma.Show();
         }
 
         private void CmdFindAllVideo_Click(object sender, RoutedEventArgs e)

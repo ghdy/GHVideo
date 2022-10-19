@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\Projects\GitHub\GHVideoApp\obj\Debug\net6.0-windows\
+C:\Users\ghdy2\source\repos\GHVideo\obj\Debug\net6.0-windows\
 GHVideoApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-E:\Projects\GitHub\GHVideoApp\App.xaml
+C:\Users\ghdy2\source\repos\GHVideo\App.xaml
 8-912200540
 
 21-1383072909
-1951446312407
+1951970365100
 Controls\UCActorViewer.xaml;Controls\UCVideoViewer.xaml;Controls\WindowAddActor.xaml;Controls\WindowAddProperty.xaml;Controls\WindowAddVideo.xaml;Controls\WindowManageActors.xaml;Controls\WindowStringsSelector.xaml;MainWindow.xaml;
 
 False

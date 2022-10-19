@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GHVideo.Core;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +21,18 @@ namespace GHVideoApp.Controls
     /// </summary>
     public partial class WindowManageActors : Window
     {
+        public App MyApp { get; private set; } = (App)Application.Current;
+
+        public ObservableCollection<Actor> ActorCollection{ get;private set; }
         public WindowManageActors()
         {
+            this.ActorCollection = MyApp.ActorDocument.ActorCollection;
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = this;
         }
     }
 }

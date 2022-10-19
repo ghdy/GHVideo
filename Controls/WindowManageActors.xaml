@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GHVideoApp.Controls"
         mc:Ignorable="d"
-        Title="WindowManageActors" Height="480" Width="800">
+        Loaded="Window_Loaded"
+        Title="WindowManageActors" Height="640" Width="800">
+    <FrameworkElement.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="titleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="ListView">
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+    </FrameworkElement.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="46"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.ColumnSpan="2"
+               Content="管理Actor"
+               Style="{StaticResource titleStyle}"
+               />
+        <ListView x:Name="listActors"
+                  Grid.Row="1" Grid.RowSpan="2"
+                  ItemsSource="{Binding ActorCollection}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding GHName}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
